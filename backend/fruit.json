@@ -1,0 +1,94 @@
+{
+    "port": "63013",
+    "dataset": [
+      {"id": 1, "name": "alma", "price": 100},
+      {"id": 2, "name": "körte", "price": 200},
+      {"id": 3, "name": "barack", "price": 200},
+      {"id": 4, "name": "szilva", "price": 150},
+      {"id": 5, "name": "narancs", "price": 250},
+      {"id": 6, "name": "banán", "price": 180},
+      {"id": 7, "name": "eper", "price": 300},
+      {"id": 8, "name": "málna", "price": 350},
+      {"id": 9, "name": "szőlő", "price": 220},
+      {"id": 10, "name": "citrom", "price": 130}
+    ],
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/fruits",
+        "response_type": "json",
+        "logic": "return dataset"
+      },
+      {
+        "method": "GET",
+        "path": "/fruits/:id",
+        "response_type": "json",
+        "logic": "find by id in dataset"
+      },  
+      {
+        "method": "GET",
+        "path": "/fruits?id=<id>&name=<name>",
+        "response_type": "json",
+        "logic": "find in dataset by queryparameter"
+      }, 
+      {
+        "method": "POST",
+        "path": "/fruits",
+        "response_type": "json",
+        "logic": "add item"
+      },
+	  {
+        "method": "DELETE",
+        "path": "/fruits/:id",
+        "response_type": "json",
+        "logic": "remove by id in dataset"
+      },
+      {
+        "method": "POST",
+        "path": "/pages/fruits",
+        "response_type": "html",
+        "logic": "add item",
+        "html_body":"<h1>Gyumolcs hozzaadva {request:name}</h1><table>{memory:dataset}</table>"
+      },
+      {
+        "method": "GET",
+        "path": "/pages/fruits",
+        "response_type": "html",
+        "logic": "return dataset",
+        "html_body":"<table>{memory:dataset}</table>"
+      },
+      {
+        "method": "GET",
+        "path": "/pages/fruits?id=<id>&name=<name>",
+        "response_type": "html",
+        "logic": "find in dataset by queryparameter",
+        "html_body": "<div>{memory:element}</div>"
+      }, 
+      {
+        "method": "GET",
+        "path": "/pages/fruits/:id",
+        "response_type": "html",
+        "logic": "find by id in dataset",
+        "html_body": "<h1>Elem azonosito {pathparam:id}</h1><div>{memory:element}</div>"
+      },
+      {
+        "method": "DELETE",
+        "path": "/pages/fruits/:id",
+        "response_type": "html",
+        "logic": "remove by id in dataset",
+        "html_body":"<h1>Successfully removed item {pathparam:id}</h1><table>{memory:dataset}</table>"
+      },
+      {
+        "method": "GET",
+        "path": "/pages/greet?name=<name>",
+        "response_type": "html",
+        "html_body": "<h1>hello {queryparameter:name}</h1>"
+      },
+      {
+        "method": "GET",
+        "path": "/pages/greet?firstname=<firstname>&lastname=<lastname>",
+        "response_type": "html",
+        "html_body": "<h1>hello {queryparameter:firstname} {queryparameter:lastname}</h1>"
+      }
+    ]
+  }
